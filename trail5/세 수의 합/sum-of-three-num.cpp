@@ -9,21 +9,35 @@ int main() {
     int N, K;
     cin >> N >> K;
 
-    int arr[N];
     unordered_map<int, int> map;
     map.reserve(N);
 
     for (int i = 0; i < N; i++) {
-        cin >> arr[i];
-        map[arr[i]]++;
+        int n;
+        cin >> n;
+        map[n]++;
     }
 
     int count = 0;
-    for(int i = 0; i < N; i++) {
-        map[arr[i]]--;
-        for(int j = 0; j < i; j++) {
-            if(map.count(K - arr[i] - arr[j]) > 0)
-                count += map[K - arr[i] - arr[j]];
+    for (const auto& [num1, freq1] : map) {
+        int complement = K - num1;
+        for (const auto& [num2, freq2] : map) {
+            if (num2 < num1) continue;
+            int num3 = complement - num2;
+            if (num3 < num2) continue;
+            auto it = map.find(num3);
+            if (it == map.end()) continue;
+            int freq3 = it->second;
+            
+            if (num3 == num1 && num3 == num2) {
+                count += freq1 * (freq1 - 1) * (freq1 - 2) / 6; // num1 == num2 == num3
+            } else if (num1 == num2) {
+                count += freq1 * (freq1 - 1) / 2 * freq3; // num1 == num2 < num3
+            } else if (num2 == num3) {
+                count += freq1 * freq3 * (freq3 - 1) / 2; // num1 < num2 == num3
+            } else {
+                count += freq1 * freq2 * freq3; // num1 < num2 < num3
+            }
         }
     }
 
