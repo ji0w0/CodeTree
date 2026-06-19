@@ -18,7 +18,7 @@ int main() {
         map[n]++;
     }
 
-    long long count = 0;
+    int count = 0;
     for (const auto& [num1, freq1] : map) {
         int complement = K - num1;
         for (const auto& [num2, freq2] : map) {
@@ -34,9 +34,9 @@ int main() {
             } else if (num1 == num2) {
                 count += freq1 * (freq1 - 1) / 2 * freq3; // num1 == num2 < num3
             } else if (num2 == num3) {
-                count += (long long)freq1 * freq3 * (freq3 - 1) / 2; // num1 < num2 == num3
+                count += freq1 * freq3 * (freq3 - 1) / 2; // num1 < num2 == num3
             } else {
-                count += (long long)freq1 * freq2 * freq3; // num1 < num2 < num3
+                count += freq1 * freq2 * freq3; // num1 < num2 < num3
             }
         }
     }
