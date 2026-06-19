@@ -5,6 +5,7 @@ using namespace std;
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
+    cout.tie(nullptr);
     
     int N, K;
     cin >> N >> K;
@@ -41,7 +42,7 @@ int main() {
         }
     }
 
-    cout << count << endl;
+    cout << count;
 
     return 0;
 }
