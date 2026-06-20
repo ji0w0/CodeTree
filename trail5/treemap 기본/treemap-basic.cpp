@@ -10,11 +10,11 @@ int main() {
     int N;
     cin >> N;
 
-    map<int, int> map;;
+    map<int, int> map;
     for (int i = 1; i <= N; ++i) {
         string cmd;
-
         cin >> cmd;
+
         if (cmd == "add") {
             int k, v;
             cin >> k >> v;
@@ -26,19 +26,20 @@ int main() {
         } else if (cmd == "find") {
             int k;
             cin >> k;
-            if (map.find(k) != map.end()) {
-                cout << map[k] << endl;
+            auto it = map.find(k);
+            if (it != map.end()) {
+                cout << it->second << '\n';
             } else {
-                cout << "None" << endl;
+                cout << "None" << '\n';
             }
         } else if (cmd == "print_list") {
             if (map.empty()) {
-                cout << "None" << endl;
+                cout << "None" << '\n';
             } else {
                 for (const auto& [key, value] : map) {
                     cout << value << " ";
                 }
-                cout << endl;
+                cout << '\n';
             }
         }
     }
