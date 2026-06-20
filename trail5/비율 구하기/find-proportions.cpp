@@ -18,10 +18,11 @@ int main() {
         map[color]++;
     }
 
+    cout << fixed << setprecision(4);
     for (const auto& [color, count] : map) {
         float percentage = (static_cast<float>(count) / N) * 100;
 
-        cout << color << " " << fixed << setprecision(4) << percentage << endl;
+        cout << color << " " << percentage << '\n';
     }
     
     return 0;
